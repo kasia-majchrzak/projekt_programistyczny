@@ -1,0 +1,16 @@
+footer {
+    height: 50px;
+}
+
+.navbar {
+    height: 65px !important;
+}
+
+.body {
+    height: calc(100vh - 115px);
+    background-color: #e3edff;
+}
+
+label {
+    color: #333333;
+}
