@@ -1,0 +1,71 @@
+<div *ngIf="!textSimilarityCalculated">
+    <div class="d-flex flex-row justify-content-center">
+        <h3>Wczytaj pliki</h3>
+    </div>
+    <div class="d-flex flex-row justify-content-between mt-3">
+        <div class="col-6 p-2">
+            <label for="file1" class="form-label">Plik 1</label>
+            <dx-file-uploader #fileUploader [multiple]="false" [allowCanceling]="true" accept="*" [(value)]="files"
+                uploadMode="useButtons" [uploadFile]="uploadFile" (onUploaded)="onFirstFileUploaded($event)"
+                labelText="lub Upuść plik tutaj" selectButtonText="Wybierz plik" uploadButtonText="Wczytaj plik"
+                uploadedMessage="Wczytano plik" uploadFailedMessage="Nie udało się wczytać pliku"
+                readyToUploadMessage="Plik gotowy do wczytania"
+                invalidFileExtensionMessage="Niedozwolony typ pliku. Dozwolone typy pliku to: .doc, .docx, .opt, .txt"
+                [allowedFileExtensions]="['.txt', '.doc', '.docx', '.opt']"></dx-file-uploader>
+        </div>
+        <div class="col-6 p-2">
+            <label for="file1" class="form-label">Plik 2</label>
+            <dx-file-uploader #fileUploader [multiple]="false" [allowCanceling]="true" accept="*" [(value)]="files"
+                uploadMode="useButtons" [uploadFile]="uploadFile" (onUploaded)="onSecondFileUploaded($event)"
+                labelText="lub Upuść plik tutaj" selectButtonText="Wybierz plik" uploadButtonText="Wczytaj plik"
+                uploadedMessage="Wczytano plik" uploadFailedMessage="Nie udało się wczytać pliku"
+                readyToUploadMessage="Plik gotowy do wczytania"
+                invalidFileExtensionMessage="Niedozwolony typ pliku. Dozwolone typy pliku to: .doc, .docx, .opt, .txt"
+                [allowedFileExtensions]="['.txt', '.doc', '.docx', '.opt']"></dx-file-uploader>
+        </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+        <p style="color: dark-grey; margin: 0 10px 0 0;">lub </p>
+        <h3>Wpisz teksty</h3>
+    </div>
+    <div class="d-flex flex-row justify-content-between mt-3">
+        <div class="col-6 p-2">
+            <label for="text1" class="form-label">Tekst 1</label>
+            <textarea class="form-control" [(ngModel)]="firstInputText" id="text1" rows="5"></textarea>
+        </div>
+        <div class="col-6 p-2">
+            <label for="text2" class="form-label">Tekst 2</label>
+            <textarea class="form-control" [(ngModel)]="secondInputText" id="text2" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center mt-4">
+        <button mat-stroked-button type="submit" color="primary" class="nlp-app-button"
+            (click)="getTextSimilarity()">Porównaj</button>
+    </div>
+</div>
+<div *ngIf="textSimilarityCalculated">
+    <div class="d-flex justify-content-center">
+        <dx-circular-gauge id="gauge" [value]="textSimilarity">
+            <dxo-scale [startValue]="0" [endValue]="100" [tickInterval]="10">
+              <dxo-tick color="#536878"></dxo-tick>
+              <dxo-label [indentFromTick]="3" [customizeText]="customizeText"></dxo-label>
+            </dxo-scale>
+            <dxo-range-container [offset]="10">
+              <dxi-range [startValue]="0" [endValue]="35" color="#77DD77"></dxi-range>
+              <dxi-range [startValue]="35" [endValue]="65" color="#E6E200"></dxi-range>
+              <dxi-range [startValue]="65" [endValue]="100" color="#92000A"></dxi-range>
+            </dxo-range-container>
+            <dxo-tooltip [enabled]="true" [customizeTooltip]="getTootlip">
+                <dxo-font color="#DCD0FF" [size]="20"> </dxo-font>
+            </dxo-tooltip>
+            <dxo-title text="Podobieństwo:">
+              <dxo-font [size]="28"></dxo-font>
+            </dxo-title>
+        </dx-circular-gauge>
+    </div>
+    <div class="d-flex flex-row justify-content-center mt-4">
+        <button mat-stroked-button type="submit" color="primary" class="nlp-app-button" (click)="return()" style="margin: 0 8px;">
+            Powrót
+        </button>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div *ngIf="!textSummaryGenerated">
+        <div class="d-flex flex-row justify-content-center">
+            <h3>Wczytaj plik</h3>
+        </div>
+        <div class="d-flex flex-row justify-content-center mt-3">
+                <div class="col-8 p-2">
+                    <label for="file1" class="form-label">Plik </label>
+                    <dx-file-uploader
+                        #fileUploader [multiple]="false" [allowCanceling]="true"
+                        accept="*" [(value)]="files" uploadMode="useButtons" [uploadFile]="uploadFile"
+                        (onUploaded)="onUploaded($event)"
+                        labelText="lub Upuść plik tutaj" selectButtonText="Wybierz plik"
+                        uploadButtonText="Wczytaj plik" uploadedMessage="Wczytano plik"
+                        uploadFailedMessage="Nie udało się wczytać pliku" readyToUploadMessage="Plik gotowy do wczytania"
+                        invalidFileExtensionMessage="Niedozwolony typ pliku. Dozwolone typy pliku to: .doc, .docx, .opt, .txt"
+                        [allowedFileExtensions]="['.txt', '.doc', '.docx', '.opt']"
+                    ></dx-file-uploader>
+                </div>
+        </div>
+        <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+            <p style="color: dark-grey; margin: 0 10px 0 0;">lub </p>
+            <h3>Wpisz tekst</h3>
+        </div>
+        <div class="d-flex flex-row justify-content-center mt-3">
+            <div class="col-8 p-2">
+                <label for="text1" class="form-label">Tekst</label>
+                <textarea class="form-control" [(ngModel)]="inputText" id="text1" rows="10"></textarea>
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-center mt-4">
+            <button mat-stroked-button type="submit" color="primary" class="nlp-app-button" (click)="getTextSummary()" [disabled]="!inputText && !file">
+                Streść
+            </button>
+        </div>
+</div>
+<div *ngIf="textSummaryGenerated">
+    <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+        <h3>Streszczenie tesktu</h3>
+    </div>
+    <div class="d-flex flex-row justify-content-center mt-3">
+        <div class="col-8 p-2">
+            <label for="text2" class="form-label">Tekst</label>
+            <textarea class="form-control" [(ngModel)]="summary" id="text2" rows="20"></textarea>
+        </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center mt-4">
+        <button mat-stroked-button type="submit" color="primary" class="nlp-app-button" (click)="download()" style="margin: 0 8px;">
+            Pobierz
+        </button>
+        <button mat-stroked-button type="submit" color="primary" class="nlp-app-button" (click)="return()" style="margin: 0 8px;">
+            Powrót
+        </button>
+    </div>
+</div>
