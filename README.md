@@ -1,38 +1,46 @@
 # NLP-APP 
 
-Aplikacja webowa pozwalająca na generowanie chmury słów, tworzenie streszczeń oraz porównywanie dwóch tekstów.
+Web app which lets you to generate word clouds, text summaries and also to check if two text are similar to each other/
 
-## Chmury
-- Możliwe wczytanie tekstu z pliku bądź wpisanie tekstu
-- Generowanie chmury słów
-- Możliwość pobrania chmury w postaci pliku jpg
+## Word clouds
+- Upload file or enter text
+- Click button to generate word cloud
+- You can download your word cloud image in .jpg format
 
-## Streszczenie
-- Możliwe wczytanie tekstu z pliku bądź wpisanie tekstu
-- Generowanie streszczenia z wczytanego tekstu
-- Możliwość pobrania pliku w formacie .txt, który zawiera wygenerowane streszczenie
+## Text summaries
+- Upload file or enter text
+- Click button to generate text summary
+- You can download your summary in .txt format1
 
-## Porównywanie tekstów
-- Możliwe wczytanie dwóch plików bądź wpisanie tekstu
-- Aplikacja zwraca procent podobieństwa tekstów do siebie
+## Text similarity
+- Upload files or enter texts
+- Click button to check similarity of two texts
 
-## Struktura projektu
-Projekt zawiera 2 foldery: folder z frontendem napisanym w Angularze oraz folder zawierający backend aplikacji napisany w pythonie (z wykorzystaniem Django)
+## Project structure
+Project contains two directories: 
+- directory for backend with django
+- directory with angular frontend 
 
-## Frameworki, biblioteki
+## Frameworks and external libraries
 - Django
-- Angular
 - nltk
 - scikit-learn
 - numpy
 - pandas
+- Angular
+- angular-material
+- dev-extreme
 
-## Uruchomienie aplikacji
-Aby uruchomić aplikację lokalnie, należy przejść do folderu, który zawiera frontend aplikacji oraz uruchomić konsolę cmd.
-Następnie w konsoli należy wpisać polecenie `ng serve`
+## Run app locally
+Clone into git repository by entering `git clone path-to-repository`
+Then checkout to frontend/nlp-app folder and run:
+`cd frontend/nlp-app`
+`ng serve`
+Your app should be running on `localhost:8081`
 
-Aby uruchomić backend aplikacji należy przejść do folderu, który zawiera backend oraz uruchomić konsolę cmd. 
-Następnie w konsoli należy wpisać polecenie `python manage.py runserver`
+To run Django checkout to backend/mysite and run:
+`cd backend/mysite`
+`python manage.py runserver`
 
-## Dokumentacja swaggerowa
-Jeżeli uruchomimy aplikację lokalnie, dokumentacja znajduje się pod adresem `http://127.0.0.1:8000/docs/`
+## Swagger docs
+If you run your app locally, to view swagger documentation go to `http://127.0.0.1:8000/docs/`
